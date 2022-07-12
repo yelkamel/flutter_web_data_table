@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_data_table/src/extension.dart';
 
 import 'web_data_column.dart';
 
@@ -112,7 +113,9 @@ class WebDataTableSource extends DataTableSource {
       int containCount = 0;
       for (final filterText in filterTexts!) {
         for (final valueText in valueTexts) {
-          if (valueText.contains(filterText)) {
+          if (valueText.removeDiacritics
+              .toLowerCase()
+              .contains(filterText.removeDiacritics.toLowerCase())) {
             containCount++;
             break;
           }
